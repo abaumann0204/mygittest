@@ -1,6 +1,6 @@
 /*
 
-		Version mit flachem Routing
+		Version unter Nutzung von "nested routing"
 
 */
 
@@ -22,25 +22,39 @@ App.Person = DS.Model.extend({
 });
 
 
+
 App.Router.map(function(){
-    this.resource('people');
-    this.resource('person',{path: 'people/:person_id'});
-    this.route('dummy');
+    
+    this.resource('testapp',function(){
+    	    this.resource('people',function(){
+    	        this.resource('person',{path: 'people/:person_id'});
+            });
+
+    	this.route('page1');
+        this.route('page2');
+
+    })
 });
 
-
-App.DummyRoute = Ember.Route.extend({
-	renderTemplate: function(){	
-		this.render('index',{outlet: 'index'});
-		this.render('dummy',{outlet: 'dummy'});
-	}
+App.TestappIndexRoute = Ember.Route.extend({
+	
 }); 
 
 App.IndexRoute = Ember.Route.extend({
-	renderTemplate: function(){	
-		this.render('index',{outlet: 'index'});
-	}
+ redirect: function() {
+    this.transitionTo('testapp.index');
+  }
 });
+
+App.TestappPage1Route = Ember.Route.extend({
+
+});
+
+
+App.TestappPage2Route = Ember.Route.extend({
+
+});
+
 
 App.PersonRoute = Ember.Route.extend({
 
@@ -48,11 +62,6 @@ App.PersonRoute = Ember.Route.extend({
         console.log('PersonRoute: set Model ==> perform App.Person.find(params.person_id)')
         var p = App.Person.find(params.person_id);
 		return p;
-	},
-	renderTemplate: function(){
-		this.render('index',{outlet: 'index'});
-		this.render('people',{outlet: 'personenliste'});
-		this.render('person',{outlet: 'detailPersonData'});
 	}
     
 });
@@ -64,10 +73,6 @@ App.PeopleRoute = Ember.Route.extend({
         console.log('PeopleRoute: set Model ==> perform App.Person.find()')
         var people = App.Person.find();
 		return people;
-	},
-	renderTemplate: function(){
-		this.render('index',{outlet: 'index'});
-		this.render('people',{outlet: 'personenliste'});
 	}
 
 });

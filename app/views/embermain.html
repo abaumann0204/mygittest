@@ -1,6 +1,6 @@
 <!--
 
-	Version mit flachem Routing
+	Version unter Nutzung von "nested routing"
 
 -->
 <section id="emberapp">
@@ -10,23 +10,43 @@
          <H1> Application Template </H1>
         
 		<div>
-			{{outlet index}}
-			{{outlet dummy}}
-			{{outlet personenliste}}
-			{{outlet detailPersonData}}
+			{{outlet}}
 
 		</div>
 
 		
 	</script>
 
-
+<!-- 
 	<script type="text/x-handlebars" data-template-name="index">
 		<H2>Content Index Template</H2>
 		<nav>
 		{{#linkTo "people"}}Personen anzeigen{{/linkTo}}
-		{{#linkTo "dummy"}}Dummy anzeige{{/linkTo}}
+		{{#linkTo "page1"}}Page 1 anzeige{{/linkTo}}
+		{{#linkTo "page2"}}Page 2 anzeige{{/linkTo}}
+		</nav>
 
+		<div>
+			{{outlet}}
+
+		</div>
+
+	</script>
+
+ -->
+	<script type="text/x-handlebars" data-template-name="testapp">
+		<H2>TestApp Template</H2>
+		<nav>
+		{{#linkTo "people"}}Personen anzeigen{{/linkTo}}
+        {{#linkTo "testapp.page1"}}Page 1 anzeige{{/linkTo}}
+		{{#linkTo "testapp.page2"}}Page 2 anzeige{{/linkTo}}
+
+		</nav>
+
+		<div>
+			{{outlet}}
+
+		</div>
 
 	</script>
 
@@ -40,7 +60,10 @@
 				{{/each}}
 			</ul>
 		</div>
-		
+        <div>
+            {{outlet}}
+
+        </div>
 	</script>
 
 
@@ -57,8 +80,15 @@
 		</div>
 	</script>
 
-	<script type="text/x-handlebars" data-template-name="dummy">
-		<H4>Dummy Template</H4>
+    <script type="text/x-handlebars" data-template-name="testapp/page1">
+        <H4>Page 1 Template</H4>
+    </script>
+
+	<script type="text/x-handlebars" data-template-name="testapp/page2">
+		<H4>Page 2 Template</H4>
 	</script>
+
+
+
 
 </section>
