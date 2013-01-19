@@ -1,0 +1,59 @@
+<section id="emberapp">
+
+	<script type="text/x-handlebars" data-template-name="application">
+        
+         <H1> Application Template </H1>
+        
+		<div>
+			{{outlet index}}
+			{{outlet dummy}}
+			{{outlet personenliste}}
+			{{outlet detailPersonData}}
+
+		</div>
+
+		
+	</script>
+
+
+	<script type="text/x-handlebars" data-template-name="index">
+		<H2>Content Index Template</H2>
+		<nav>
+		{{#linkTo "people"}}Personen anzeigen{{/linkTo}}
+		{{#linkTo "dummy"}}Dummy anzeige{{/linkTo}}
+
+
+	</script>
+
+
+	<script type="text/x-handlebars" data-template-name="people">
+		<div id="people">
+			<H3>Personen Liste</H3>
+			<ul>
+				{{#each  person in controller}}
+					<li>{{#linkTo "person" person}} {{person.firstName}} {{person.lastName}} {{/linkTo}}</li>
+				{{/each}}
+			</ul>
+		</div>
+		
+	</script>
+
+
+	<script type="text/x-handlebars" data-template-name="person">
+		<div id="person">
+			<H3>Person View</H3>
+
+			<dl>
+	 			<dt>Vorname</dt>
+	 			<dd>{{firstName}}</dd>
+	 			<dt>Nachname</dt>
+	 			<dd>{{lastName}}</dd>
+			</dl>
+		</div>
+	</script>
+
+	<script type="text/x-handlebars" data-template-name="dummy">
+		<H4>Dummy Template</H4>
+	</script>
+
+</section>
