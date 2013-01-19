@@ -1,3 +1,9 @@
+/*
+
+		Version mit flachem Routing
+
+*/
+
 window.App = Ember.Application.create();
 
 DS.RESTAdapter.configure("plurals",{"person" : "people"})
