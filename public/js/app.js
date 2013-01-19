@@ -24,34 +24,26 @@ App.Person = DS.Model.extend({
 
 
 App.Router.map(function(){
-    
-    this.resource('testapp',function(){
-    	    this.resource('people',function(){
+
+    	 this.resource('people',function(){
     	        this.resource('person',{path: 'people/:person_id'});
-            });
+        });
 
     	this.route('page1');
         this.route('page2');
-
-    })
 });
 
-App.TestappIndexRoute = Ember.Route.extend({
-	
-}); 
 
 App.IndexRoute = Ember.Route.extend({
- redirect: function() {
-    this.transitionTo('testapp.index');
-  }
-});
-
-App.TestappPage1Route = Ember.Route.extend({
 
 });
 
+App.Page1Route = Ember.Route.extend({
 
-App.TestappPage2Route = Ember.Route.extend({
+});
+
+
+App.Page2Route = Ember.Route.extend({
 
 });
 
